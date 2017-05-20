@@ -8,7 +8,15 @@
         <managed-bean-name>hello</managed-bean-name>
         <managed-bean-class>com.david.webmonitor.Controller.HelloController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>helloSpringService</property-name>
+            <property-class>com.david.webmonitor.Service.HelloSpringService</property-class>
+            <value>#{springService}</value>
+        </managed-property>
     </managed-bean>
+   
     
-    
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    </application>
 </faces-config>
