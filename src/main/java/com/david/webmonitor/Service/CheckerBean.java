@@ -15,6 +15,8 @@ public class CheckerBean implements Serializable {
     @Autowired
     private CheckDAO checkDAO;
 
+    private Checkers checkers=new Checkers();
+
     public void init2() {
         System.out.println("*****************");
         list = checkDAO.getAllCheckerss();
@@ -25,9 +27,21 @@ public class CheckerBean implements Serializable {
 
     }
 
+    public void Save() {
+        checkDAO.createCheckers(checkers);
+    }
+
     public List<Checkers> getList() {
         return list;
     }
 
+    public Checkers getCheckers() {
+        return checkers;
+    }
+
+    public void setCheckers(Checkers checkers) {
+        this.checkers = checkers;
+    }
     
+
 }

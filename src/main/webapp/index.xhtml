@@ -21,6 +21,17 @@
                 <a href= "#{chek.url}" >#{chek.url}</a>
             </p:column>
         </p:dataTable>
+        
+        <h:form>
+            <p:panelGrid columns="2">
+                Name:
+                <p:inputText value="#{ck.checkers.name}"/>
+                
+                url:
+                <p:inputText value="#{ck.checkers.url}"/>
+            </p:panelGrid>
+            <p:commandButton value="Save" action="#{ck.Save()}"/>
+        </h:form>
     </h:body>
 </html>
 
