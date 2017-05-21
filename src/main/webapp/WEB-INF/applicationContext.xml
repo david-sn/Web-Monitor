@@ -78,4 +78,6 @@
 
         
     <bean class="com.david.webmonitor.Hibernate.Sessions.InitDB" init-method="init"/>
+    
+    <bean class="com.david.webmonitor.Service.CheckerBean" id="ck" init-method="init2"></bean>
 </beans>
