@@ -7,7 +7,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <p:dataTable  var="chek" value="#{ck.list}"  >
+        <p:dataTable  var="chek" value="#{ck.list}" id="checkTable" >
 
             <p:column headerText="Code">
                 <h:outputText value="#{chek.id}" />
@@ -21,17 +21,19 @@
                 <a href= "#{chek.url}" >#{chek.url}</a>
             </p:column>
         </p:dataTable>
-        
-        <h:form>
+
+        <h:form id="checkForm">
             <p:panelGrid columns="2">
                 Name:
                 <p:inputText value="#{ck.checkers.name}"/>
-                
+
                 url:
                 <p:inputText value="#{ck.checkers.url}"/>
             </p:panelGrid>
-            <p:commandButton value="Save" action="#{ck.Save()}"/>
+            <p:commandButton value="Save" action="#{ck.Save()}" update="checkForm, :checkTable, :msg"/>
         </h:form>
+        
+        <p:messages id="msg"/>
     </h:body>
 </html>
 
