@@ -25,7 +25,7 @@ public class CheckerBean implements Serializable {
     }
 
     public void Save() {
-        checkDAO.createCheckers(checkers);
+        checkDAO.SaveOrUpdate(checkers);
         checkers = new Checkers();
         init2();
 

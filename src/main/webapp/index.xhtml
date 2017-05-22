@@ -23,24 +23,48 @@
 
             <p:column headerText="OPerations">
                 <h:form>
-                    <p:commandButton value="Edit" action="#{ck.setCheckers(chek)}" update=":checkForm"/>
-                    <p:commandButton value="Delete" action="#{ck.remove(chek)}" update=":checkTable, :msg"/>
+                    <p:commandButton value="Edit" action="#{ck.setCheckers(chek)}" update=":checkForm" oncomplete="PF('checkDialog').show()"/>
+                    <p:commandButton value="Delete" action="#{ck.remove(chek)}" update=":checkTable, :msg">
+                        <p:confirm header="Confirmation" message="Are You Sur?" />
+                    </p:commandButton>
                 </h:form>
             </p:column>
         </p:dataTable>
 
-        <h:form id="checkForm">
-            <p:panelGrid columns="2">
-                Name:
-                <p:inputText value="#{ck.checkers.name}"/>
-
-                url:
-                <p:inputText value="#{ck.checkers.url}"/>
-            </p:panelGrid>
-            <p:commandButton value="Save" action="#{ck.Save()}" update="checkForm, :checkTable, :msg"/>
+        <br/>
+        <h:form>
+            <p:commandButton value="add Check" update=":checkForm" resetValues="true" oncomplete="PF('checkDialog').show()"/>
         </h:form>
 
-        <p:messages id="msg"/>
+        <p:dialog widgetVar="checkDialog" closeOnEscape="true" modal="true" header="Check">
+            <h:form id="checkForm">
+                <p:panelGrid columns="2">
+                    Name:
+                    <p:inputText value="#{ck.checkers.name}"/>
+
+                    url:
+                    <p:inputText value="#{ck.checkers.url}"/>
+                </p:panelGrid>
+                <p:commandButton value="Save" oncomplete="handleDialogSub(args,'checkDialog')" action="#{ck.Save()}" update="checkForm, :checkTable, :msg"/>
+            </h:form>
+            <p:messages id="msg"/>
+        </p:dialog>
+
+        <script>
+            function handleDialogSub(args, dialogName) {
+
+                if (!args.validationFaild) {
+                    PF(dialogName).hide();
+                }
+            }
+        </script>
+
+        <h:form>
+            <p:confirmDialog global="true" closeOnEscape="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </h:form>
     </h:body>
 </html>
 

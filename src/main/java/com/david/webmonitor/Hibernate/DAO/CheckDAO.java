@@ -24,6 +24,10 @@ public class CheckDAO {
     public int createCheckers(Checkers checkers) {
         return (int) hibernateUtil.create(checkers);
     }
+    
+    public Checkers SaveOrUpdate(Checkers checkers) {
+        return   hibernateUtil.SaveOrUpdate(checkers);
+    }
 
     public Checkers updateCheckers(Checkers checkers) {
         return hibernateUtil.update(checkers);

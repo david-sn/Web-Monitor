@@ -20,6 +20,11 @@ public class NewHibernateUtil {
         return sessionFactory.getCurrentSession().save(entity);
     }
 
+    public <T> T SaveOrUpdate(final T entity) {
+        sessionFactory.getCurrentSession().saveOrUpdate(entity);
+        return entity;
+    }
+
     public <T> T update(final T entity) {
         sessionFactory.getCurrentSession().update(entity);
         return entity;
@@ -44,8 +49,8 @@ public class NewHibernateUtil {
         return sessionFactory.getCurrentSession().createSQLQuery(query).list();
     }
 
-    public <T> List getByName(String PrpoertyName,String value,Class<T> entityClass) {
-        Criteria c=sessionFactory.getCurrentSession().createCriteria(entityClass);
+    public <T> List getByName(String PrpoertyName, String value, Class<T> entityClass) {
+        Criteria c = sessionFactory.getCurrentSession().createCriteria(entityClass);
         c.add(Restrictions.ilike(PrpoertyName, value));
         return c.list();
     }
