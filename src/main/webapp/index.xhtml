@@ -20,6 +20,13 @@
             <p:column headerText="Link">
                 <a href= "#{chek.url}" >#{chek.url}</a>
             </p:column>
+
+            <p:column headerText="OPerations">
+                <h:form>
+                    <p:commandButton value="Edit" action="#{ck.setCheckers(chek)}" update=":checkForm"/>
+                    <p:commandButton value="Delete" action="#{ck.remove(chek)}" update=":checkTable, :msg"/>
+                </h:form>
+            </p:column>
         </p:dataTable>
 
         <h:form id="checkForm">
@@ -32,7 +39,7 @@
             </p:panelGrid>
             <p:commandButton value="Save" action="#{ck.Save()}" update="checkForm, :checkTable, :msg"/>
         </h:form>
-        
+
         <p:messages id="msg"/>
     </h:body>
 </html>

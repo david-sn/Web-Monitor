@@ -20,20 +20,23 @@ public class CheckDAO {
 
     @Autowired
     private NewHibernateUtil hibernateUtil;
- 
 
     public int createCheckers(Checkers checkers) {
         return (int) hibernateUtil.create(checkers);
     }
-    
+
     public Checkers updateCheckers(Checkers checkers) {
         return hibernateUtil.update(checkers);
     }
 
     public void deleteCheckers(int id) {
         hibernateUtil.delete(id);
-    } 
-    
+    }
+
+    public void deleteCheckers(Checkers checkers) {
+        hibernateUtil.delete(checkers);
+    }
+
     public List<Checkers> getAllCheckerss() {
         return hibernateUtil.fetchAll(Checkers.class);
     }
@@ -41,5 +44,5 @@ public class CheckDAO {
     public Checkers getCheckers(int id) {
         return hibernateUtil.fetchById(id, Checkers.class);
     }
- 
+
 }

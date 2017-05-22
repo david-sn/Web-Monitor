@@ -17,19 +17,19 @@ public class CheckerBean implements Serializable {
     @Autowired
     private CheckDAO checkDAO;
 
-    private Checkers checkers=new Checkers();
+    private Checkers checkers = new Checkers();
 
     public void init2() {
         System.out.println("*****************");
         list = checkDAO.getAllCheckerss();
-   }
+    }
 
     public void Save() {
         checkDAO.createCheckers(checkers);
-        checkers=new Checkers();
+        checkers = new Checkers();
         init2();
-        
-        FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Data Saved ...",null));
+
+        FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Data Saved ...", null));
     }
 
     public List<Checkers> getList() {
@@ -43,6 +43,12 @@ public class CheckerBean implements Serializable {
     public void setCheckers(Checkers checkers) {
         this.checkers = checkers;
     }
-    
+
+    public void remove(Checkers c) {
+        checkDAO.deleteCheckers(c);
+        init2();
+
+        FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Data Removed ...", null));
+    }
 
 }
